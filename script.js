@@ -1,10 +1,15 @@
 let list = document.getElementById('items');
-output  = list.children;
-list.children[0].innerText = 'testing ';
-list.firstElementChild.style.color= 'orange';
-list.lastElementChild.style.color= 'red';
+// creating a element by DOM API  fisrt is to create any element and then append it into the parent div or any htmlNode
+// example given below:
+let div  =  document.createElement('div');
+div.className = 'testingClass';
+div.id= 'testingID';
+let textdiv= document.createElement('h3');
+textdiv.innerText = "testing heading";
+div.appendChild(textdiv);
+document.querySelector('.container').appendChild(div);
 
-let  child  =  document.querySelector('.item');
-output = child.parentElement;
-child.parentElement.style.marginTop = '10px';
-console.log(output);
+let item = document.createElement('li');
+item.innerText = 'yellow';
+list.appendChild(item);
+
