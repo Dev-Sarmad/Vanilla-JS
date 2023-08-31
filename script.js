@@ -1,15 +1,17 @@
-let list = document.getElementById('items');
-// creating a element by DOM API  fisrt is to create any element and then append it into the parent div or any htmlNode
-// example given below:
-let div  =  document.createElement('div');
-div.className = 'testingClass';
-div.id= 'testingID';
-let textdiv= document.createElement('h3');
-textdiv.innerText = "testing heading";
-div.appendChild(textdiv);
-document.querySelector('.container').appendChild(div);
+const replaceFirstItem = () => {
+  let firstItem = document.querySelector("li:first-child");
+  let replacedItem = document.createElement("li");
+  replacedItem.innerText = "replacedItem";
+  firstItem.replaceWith(replacedItem);
+};
 
-let item = document.createElement('li');
-item.innerText = 'yellow';
-list.appendChild(item);
-
+const replaceAll = () => {
+  let lis = document.querySelectorAll(".item");
+  lis.forEach((item, index) =>
+    index === 1
+      ? (item.innerText = "replacedSecond")
+      : (item.innerText = "replaceAll")
+  );
+};
+replaceAll();
+// replaceFirstItem();
