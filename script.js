@@ -1,17 +1,25 @@
-const replaceFirstItem = () => {
-  let firstItem = document.querySelector("li:first-child");
-  let replacedItem = document.createElement("li");
-  replacedItem.innerText = "replacedItem";
-  firstItem.replaceWith(replacedItem);
+const clearButton = () => {
+  let button = document.querySelector("button");
+  button.remove();
 };
 
-const replaceAll = () => {
-  let lis = document.querySelectorAll(".item");
-  lis.forEach((item, index) =>
-    index === 1
-      ? (item.innerText = "replacedSecond")
-      : (item.innerText = "replaceAll")
-  );
+const clearFirstElement = () => {
+  // first select the parent element
+  let ul = document.querySelector("ul");
+  let li = document.querySelector("li:first-child");
+  ul.removeChild(li);
 };
-replaceAll();
-// replaceFirstItem();
+
+const removeItem = (itemNumber) => {
+  let ul = document.querySelector("ul");
+  let li = document.querySelectorAll("li")[itemNumber - 1];
+  ul.removeChild(li);
+};
+const removeItem2  = (itemNumber) => {
+    let li = document.querySelectorAll("li");
+li[itemNumber-1].remove();
+}
+removeItem2(1)
+// removeItem(4);
+// clearFirstElement();
+// clearButton();
