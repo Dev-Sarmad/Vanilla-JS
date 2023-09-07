@@ -15,14 +15,13 @@ const addItem = (e) => {
   }
   // creating new item
   const item = document.createElement("li");
-  item.innerHTML = input;
+  item.textContent = input;
   const button = createButton("remove-item btn-link text-red");
   item.appendChild(button);
   itemList.appendChild(item);
   checkUI();
   // for to reset the input
   formInput.value = "";
-  
 };
 
 function createButton(classes) {
@@ -52,6 +51,19 @@ const clearItems = () => {
   checkUI();
 };
 
+function filterItem(e) {
+  const items = itemList.querySelectorAll("li");
+  let text = e.target.value.toLowerCase();
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+    if (itemName.indexOf(text) !== -1) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
 function checkUI() {
   const items = itemList.querySelectorAll("li");
   if (items.length === 0) {
@@ -66,5 +78,6 @@ function checkUI() {
 form.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 clearButton.addEventListener("click", clearItems);
+filter.addEventListener("input", filterItem);
 
 checkUI();
