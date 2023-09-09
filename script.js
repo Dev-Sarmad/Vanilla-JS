@@ -3,6 +3,13 @@ const formInput = document.querySelector("#item-input");
 const itemList = document.querySelector("#item-list");
 const clearButton = document.getElementById("clear");
 const filter = document.getElementById("filter");
+
+function displayItems (){
+  let itemToLocalStorage = getItemFromLocalStorage();
+  itemToLocalStorage.forEach(item=>addItemDOM(item));
+  checkUI();
+}
+
 const onAddItemSubmit = (e) => {
   e.preventDefault();
   // validation of user input
@@ -33,14 +40,26 @@ function addItemDOM(items) {
 
 function itemToLocalStorage(item) {
   // for checking items in storageItem
+  const itemToLocalStorage= getItemFromLocalStorage();
+  // if (localStorage.getItem("items") === null) {
+  //   itemToLocalStorage = [];
+  // } else {
+  //   itemToLocalStorage = JSON.parse(localStorage.getItem("items"));
+  // }
+  // add item to array
+  itemToLocalStorage.push(item);
+  // sending item to local storage in string format
+  localStorage.setItem("items", JSON.stringify(itemToLocalStorage));
+}
+
+function getItemFromLocalStorage(){
   let itemToLocalStorage;
   if (localStorage.getItem("items") === null) {
     itemToLocalStorage = [];
   } else {
     itemToLocalStorage = JSON.parse(localStorage.getItem("items"));
   }
-  itemToLocalStorage.push(item);
-  localStorage.setItem("items", JSON.stringify(itemToLocalStorage));
+  return itemToLocalStorage;
 }
 
 function createButton(classes) {
@@ -98,5 +117,6 @@ form.addEventListener("submit", onAddItemSubmit);
 itemList.addEventListener("click", removeItem);
 clearButton.addEventListener("click", clearItems);
 filter.addEventListener("input", filterItem);
+document.addEventListener("DOMContentLoaded", displayItems)
 
 checkUI();
