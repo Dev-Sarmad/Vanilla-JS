@@ -22,6 +22,18 @@ const onAddItemSubmit = (e) => {
   } else {
     // console.log(input);
   }
+  // check for the update 
+  if(editMode){
+    let itemToEdit = itemList.querySelector('li');
+    // remove the existing item from local storage
+    removeItemFromLocalStorage(itemToEdit.textContent)
+    // remove the existing item from DOM
+    itemToEdit.remove();
+    editMode = false;
+    formBtn.style.background = 'white';
+    formBtn.innerHTML = '<i class="fa-solid fa-plus"></i>Add Item';
+
+  }
   // add items to DOM
   addItemDOM(input);
   // add item to localStorage
@@ -89,7 +101,6 @@ function editItem(item) {
   editMode =true;
   formBtn.style.background = 'green';
   formBtn.innerHTML = 'update';
-  item.style.color = '#ccc';
   formInput.value = item.textContent;
 }
 const removeItem = (item) => {
