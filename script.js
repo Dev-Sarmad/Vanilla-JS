@@ -4,9 +4,9 @@ const itemList = document.querySelector("#item-list");
 const clearButton = document.getElementById("clear");
 const filter = document.getElementById("filter");
 
-function displayItems (){
+function displayItems() {
   let itemToLocalStorage = getItemFromLocalStorage();
-  itemToLocalStorage.forEach(item=>addItemDOM(item));
+  itemToLocalStorage.forEach((item) => addItemDOM(item));
   checkUI();
 }
 
@@ -40,7 +40,7 @@ function addItemDOM(items) {
 
 function itemToLocalStorage(item) {
   // for checking items in storageItem
-  const itemToLocalStorage= getItemFromLocalStorage();
+  const itemToLocalStorage = getItemFromLocalStorage();
   // if (localStorage.getItem("items") === null) {
   //   itemToLocalStorage = [];
   // } else {
@@ -52,7 +52,7 @@ function itemToLocalStorage(item) {
   localStorage.setItem("items", JSON.stringify(itemToLocalStorage));
 }
 
-function getItemFromLocalStorage(){
+function getItemFromLocalStorage() {
   let itemToLocalStorage;
   if (localStorage.getItem("items") === null) {
     itemToLocalStorage = [];
@@ -75,17 +75,28 @@ function createIcon(classes) {
   return icon;
 }
 
-const removeItem = (e) => {
+function onClickItem(e) {
   if (e.target.parentElement.classList.contains("remove-item")) {
-    if (confirm("Are you sure you")) {
-      e.target.parentElement.parentElement.remove();
-      checkUI();
-    }
+    removeItem(e.target.parentElement.parentElement);
+  }
+}
+const removeItem = (item) => {
+  if (confirm("Are you sure you")) {
+    // remove from the DOM
+    item.remove();
+    // remove from the local storage
+    removeItemFromLocalStorage(item.textContent);
+    checkUI();
   }
 };
-
+function removeItemFromLocalStorage(item) {
+ let itemToLocalStorage = getItemFromLocalStorage();
+ itemToLocalStorage = itemToLocalStorage.filter((i)=> i !==item)
+ localStorage.setItem('items', JSON.stringify(itemToLocalStorage));
+}
 const clearItems = () => {
   itemList.remove();
+  localStorage.removeItem('items');
   checkUI();
 };
 
@@ -114,9 +125,9 @@ function checkUI() {
 }
 
 form.addEventListener("submit", onAddItemSubmit);
-itemList.addEventListener("click", removeItem);
+itemList.addEventListener("click", onClickItem);
 clearButton.addEventListener("click", clearItems);
 filter.addEventListener("input", filterItem);
-document.addEventListener("DOMContentLoaded", displayItems)
+document.addEventListener("DOMContentLoaded", displayItems);
 
 checkUI();
