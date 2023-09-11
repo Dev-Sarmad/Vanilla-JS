@@ -3,7 +3,7 @@ const formInput = document.querySelector("#item-input");
 const itemList = document.querySelector("#item-list");
 const clearButton = document.getElementById("clear");
 const filter = document.getElementById("filter");
-const formBtn = form.querySelector('button');
+const formBtn = form.querySelector("button");
 let editMode = false;
 
 function displayItems() {
@@ -19,20 +19,23 @@ const onAddItemSubmit = (e) => {
   if (input === "") {
     alert("Please enter a valid input");
     return;
-  } else {
-    // console.log(input);
   }
-  // check for the update 
-  if(editMode){
-    let itemToEdit = itemList.querySelector('li');
+  // check for the update
+  if (editMode) {
+    let itemToEdit = itemList.querySelector("li");
     // remove the existing item from local storage
-    removeItemFromLocalStorage(itemToEdit.textContent)
+    removeItemFromLocalStorage(itemToEdit.textContent);
     // remove the existing item from DOM
     itemToEdit.remove();
     editMode = false;
-    formBtn.style.background = 'white';
+    formBtn.style.background = "white";
     formBtn.innerHTML = '<i class="fa-solid fa-plus"></i>Add Item';
-
+  } else {
+    if (checkExistingItem(input)) {
+      alert("item already exists");
+      formInput.value = "";
+      return;
+    }
   }
   // add items to DOM
   addItemDOM(input);
@@ -92,15 +95,18 @@ function createIcon(classes) {
 function onClickItem(e) {
   if (e.target.parentElement.classList.contains("remove-item")) {
     removeItem(e.target.parentElement.parentElement);
-  }else{
-    editItem(e.target)
-    
+  } else {
+    editItem(e.target);
   }
 }
+function checkExistingItem(item) {
+  let itemToLocalStorage = getItemFromLocalStorage();
+  return itemToLocalStorage.includes(item);
+}
 function editItem(item) {
-  editMode =true;
-  formBtn.style.background = 'green';
-  formBtn.innerHTML = 'update';
+  editMode = true;
+  formBtn.style.background = "green";
+  formBtn.innerHTML = "update";
   formInput.value = item.textContent;
 }
 const removeItem = (item) => {
@@ -113,13 +119,13 @@ const removeItem = (item) => {
   }
 };
 function removeItemFromLocalStorage(item) {
- let itemToLocalStorage = getItemFromLocalStorage();
- itemToLocalStorage = itemToLocalStorage.filter((i)=> i !==item)
- localStorage.setItem('items', JSON.stringify(itemToLocalStorage));
+  let itemToLocalStorage = getItemFromLocalStorage();
+  itemToLocalStorage = itemToLocalStorage.filter((i) => i !== item);
+  localStorage.setItem("items", JSON.stringify(itemToLocalStorage));
 }
 const clearItems = () => {
   itemList.remove();
-  localStorage.removeItem('items');
+  localStorage.removeItem("items");
   checkUI();
 };
 
