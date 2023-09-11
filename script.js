@@ -3,6 +3,8 @@ const formInput = document.querySelector("#item-input");
 const itemList = document.querySelector("#item-list");
 const clearButton = document.getElementById("clear");
 const filter = document.getElementById("filter");
+const formBtn = form.querySelector('button');
+let editMode = false;
 
 function displayItems() {
   let itemToLocalStorage = getItemFromLocalStorage();
@@ -78,7 +80,17 @@ function createIcon(classes) {
 function onClickItem(e) {
   if (e.target.parentElement.classList.contains("remove-item")) {
     removeItem(e.target.parentElement.parentElement);
+  }else{
+    editItem(e.target)
+    
   }
+}
+function editItem(item) {
+  editMode =true;
+  formBtn.style.background = 'green';
+  formBtn.innerHTML = 'update';
+  item.style.color = '#ccc';
+  formInput.value = item.textContent;
 }
 const removeItem = (item) => {
   if (confirm("Are you sure you")) {
