@@ -5,7 +5,19 @@ const clearButton = document.getElementById("clear");
 const filter = document.getElementById("filter");
 const formBtn = form.querySelector("button");
 let editMode = false;
-
+let intervalId ;
+function startChange (){
+  if(!intervalId){
+    intervalId = setInterval(changeBG,1000)
+  }
+}
+function changeBG(){
+  const randomColor  = Math.floor(Math.random()*16777215).toString(16);
+  document.body.style.backgroundColor = `#${randomColor}`;
+}
+function stopChange(){
+clearInterval(intervalId)
+}
 function displayItems() {
   let itemToLocalStorage = getItemFromLocalStorage();
   itemToLocalStorage.forEach((item) => addItemDOM(item));
@@ -158,5 +170,7 @@ itemList.addEventListener("click", onClickItem);
 clearButton.addEventListener("click", clearItems);
 filter.addEventListener("input", filterItem);
 document.addEventListener("DOMContentLoaded", displayItems);
+document.getElementById("change-bg").addEventListener("click", startChange);
+document.getElementById("stop-change-bg").addEventListener("click", stopChange);
 
 checkUI();
