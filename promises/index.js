@@ -2,7 +2,7 @@ const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     let error = false;
     if (!error) {
-      resolve({name: "sarmad", message:"this is alpha "});
+      resolve("promise resolved");
     } else {
        `${reject("something went wrong")}`;
     }
