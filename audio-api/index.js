@@ -14,7 +14,7 @@ stop.addEventListener("click", () => {
   audio.currentTime = 0;
 });
 audio.addEventListener("timeupdate", () => {
-  currentTime.innerText = audio.currentTime.toFixed(0);
+  currentTime.innerText = audio.currentTime.toFixed(2);
 });
 volume.addEventListener("change", () => {
   audio.volume = volume.value;
