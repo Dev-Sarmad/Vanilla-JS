@@ -79,5 +79,5 @@ playBtn.addEventListener("click", () => {
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
 audio.addEventListener("timeupdate", updateProgress);
-volume.addEventListener("change", () => (audio.volume = volume.value));
+volume.addEventListener("change", () =>audio.volume = volume.value);
 progressContainer.addEventListener("click", setProgress);
