@@ -1,7 +1,7 @@
 const input = document.querySelector("input");
 const generatedImage = document.querySelector(".generated-image");
 const submit = document.querySelector(".submit");
-const TOKEN = ""
+const TOKEN = "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"
 async function query() {
   showSpinner();
   try {
