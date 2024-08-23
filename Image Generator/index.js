@@ -1,7 +1,7 @@
 const input = document.querySelector("input");
 const generatedImage = document.querySelector(".generated-image");
 const submit = document.querySelector(".submit");
-const TOKEN = "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"
+// create a token from the hugging face api
 async function query() {
   showSpinner();
   try {
