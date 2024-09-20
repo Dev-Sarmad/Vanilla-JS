@@ -38,8 +38,7 @@ const getImage = async () => {
       ? "https://fal.media/files/rabbit/xqxAv3Zs0YOAXg2lzNJ54.jpeg"
       : objectUrl;
     newImage.alt = "";
-    newImage.className =
-      "h-[384px] w-full transition-all duration-75 xl:h-[512px]";
+    newImage.className = "h-[384px] w-full transition-all duration-75 xl:h-[512px]";
 
     // Append the image to the new image div
     newImageDiv.appendChild(newImage);

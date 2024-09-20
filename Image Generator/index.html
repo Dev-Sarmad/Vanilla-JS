@@ -6,29 +6,63 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Image Generator</title>
     <style>
-        .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    }
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #fff;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
-  <body style="background-image: url('./bg-hero.webp'); background-repeat: no-repeat;">
+  <body
+    style="
+      background-image: url('./bg-hero.webp');
+      background-repeat: no-repeat;
+    "
+  >
     <div>
+      <div class="flex justify-center items-center mt-3">
+        <div
+          class="portfolio-container bg-white w-[500px] h-[100px] flex items-center space-x-3 p-2 rounded-md"
+        >
+          <div class="flex-shrink-0">
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4E03AQFw4JE9L9zROg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1672638527427?e=1732147200&v=beta&t=OkS6PjKA22G6YO1g7i-4iTmu-PerYmI2EtTCwm6kKD4"
+              class="h-20 w-20 rounded-full bg-cover"
+            />
+          </div>
+          <div class="flex-grow">
+            <p>
+              Hi! I'm Sarmad Haib a ReactJS developer if you like this project
+              <span class="font-semibold decoration-dashed cursor-pointer"
+                ><a href="https://github.com/Dev-Sarmad/Vanilla-JS"
+                  >give a 🌟 on github</a
+                ></span
+              >
+              ,
+              <span class="font-semibold underline cursor-pointer"
+                ><a href="https://www.linkedin.com/in/sarmad-habib/"
+                  >follow me on Linkedin.</a
+                ></span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- App container -->
       <div
         class="flex flex-col space-x-0 space-y-4 md:flex-row md:space-x-4 md:space-y-0 md:justify-around md:items-center"
@@ -44,7 +78,9 @@
             >media platform for <br class="sm:hidden md:block" />
             developers</span
           >
-          <p class=" md:text-2xl text-slate-400 mt-4 text-sm pt-3">Create AI Art with our free AI image generator.</p>
+          <p class="md:text-2xl text-slate-400 mt-4 text-sm pt-3">
+            Create AI Art with our free AI image generator.
+          </p>
         </div>
         <!-- Generated Image -->
         <div class="generated-image p-5 mt-3">
@@ -55,14 +91,15 @@
               >&gt;</span
             >
             <input
-              class="w-full border-none bg-transparent   font-mono text-xs text-white md:text-sm px-1 py-2 outline-none"
+              class="w-full border-none bg-transparent font-mono text-xs text-white md:text-sm px-1 py-2 outline-none"
               tabindex="0"
               placeholder="Try it yourself! Type a prompt here..."
               value=""
             />
-            <span class="text-white cursor-pointer md:text-sm submit">Submit</span>
+            <span class="text-white cursor-pointer md:text-sm submit"
+              >Submit</span
+            >
           </div>
-
         </div>
       </div>
     </div>
